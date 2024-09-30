@@ -4,14 +4,14 @@ import time
 
 def moneycontrol():
     html_text=requests.get('https://www.moneycontrol.com/news/news-all/').text
-    soup= BeautifulSoup(html_text,'lxml')
+    soup= BeautifulSoup(html_text,'html.parser')
     headings=soup.find_all('li',class_='clearfix')
 
     for index,heading in enumerate(headings):
         subheading=heading.p.text
         link=heading.a['href']
         heading=heading.a['title']
-        with open(f'posts/{index}.txt','w') as f:
+        with open(f'posts/moneycontrol_{index}.txt','w') as f:
             f.write(f"News Heading : {heading}\n")
             f.write(f"Description : {subheading}\n")
             f.write(f"Link for further : {link}\n")
@@ -26,7 +26,7 @@ def bbcnews():
 
     base_url = 'https://www.bbc.com/news'
 
-    for index,card in enumerate(news_cards):
+    for index, card in enumerate(news_cards):
         headline = card.find('h2', {'data-testid': 'card-headline'})
         headline_text = headline.get_text(strip=True) if headline else "No headline found"
 
@@ -41,12 +41,11 @@ def bbcnews():
         else:
             link = "No link found"
 
-        with open(f'posts/{index}.txt','w') as f:
-            f.write(f"News Heading : {headline}\n")
-            f.write(f"Description : {headline_text}\n")
+        with open(f'posts/bbcnews_{index}.txt', 'w') as f:
+            f.write(f"News Heading : {headline_text}\n")  # Updated here
+            f.write(f"Description : {description_text}\n")
             f.write(f"Link for further : {link}\n")
         print(f'File saved:{index}')
-
 
 
 
@@ -57,7 +56,7 @@ if __name__ =='__main__':
         moneycontrol()
         bbcnews()
         time_wait=10
-        print(f'waiting for {time_wait} minutes...')
-        time.sleep(time_wait * 60)
+        print(f'waiting for {time_wait} seconds...')
+        time.sleep(time_wait )
 
             
