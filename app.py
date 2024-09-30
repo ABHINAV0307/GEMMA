@@ -18,7 +18,7 @@ load_dotenv()
 groq_api_key=os.getenv('GROQ_API_KEY')
 os.environ["GOOGLE_API_KEY"]=os.getenv("GOOGLE_API_KEY")
 
-st.title("Gemma Model Document Q&A")
+st.title("AI News AGGREGATOR")
 
 llm=ChatGroq(groq_api_key=groq_api_key,model_name="gemma-7b-it")
 
@@ -34,16 +34,33 @@ Questions:{input}
 """
 )
 
+from langchain.docstore.document import Document  # Import Document class
+
+# Updated vector embedding function to handle text files
 def vector_embedding():
 
     if "vectors" not in st.session_state:
+        st.session_state.embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
-        st.session_state.embeddings=GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
-        st.session_state.loader=PyPDFDirectoryLoader("./posts") ## Data Ingestion
-        st.session_state.docs=st.session_state.loader.load() ## Document Loading
-        st.session_state.text_splitter=RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=150) ## Chunk Creation
-        st.session_state.final_documents=st.session_state.text_splitter.split_documents(st.session_state.docs[:20]) #splitting
-        st.session_state.vectors=FAISS.from_documents(st.session_state.final_documents,st.session_state.embeddings) #vector OpenAI embeddings
+        # **Change 1: Loading text files with proper encoding and format**
+        documents = []
+        folder_path = "./posts"
+        for filename in os.listdir(folder_path):
+            if filename.endswith(".txt"):  # Ensure we only load .txt files
+                try:
+                    with open(os.path.join(folder_path, filename), 'r', encoding='windows-1252') as f:
+                        content = f.read()  # Load the text content
+                        # **Change 2: Create Document objects with page_content**
+                        documents.append(Document(page_content=content))
+                except UnicodeDecodeError:
+                    st.error(f"Error reading file: {filename}")
+
+        # **Change 3: Create documents and chunks from text files**
+        st.session_state.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+        st.session_state.final_documents = st.session_state.text_splitter.split_documents(documents)
+        
+        # **Change 4: Vector embedding of the documents**
+        st.session_state.vectors = FAISS.from_documents(st.session_state.final_documents, st.session_state.embeddings)
 
 
 prompt1=st.text_input("Enter news you want to search")
