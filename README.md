@@ -96,7 +96,10 @@ This project is an AI-powered news aggregator that scrapes real-time news data f
    ```bash
    streamlit run app.py
 
- that's it you are ready to go
+---
+
+## Data Flow 
+![image](https://github.com/user-attachments/assets/088bf5d3-41d5-4c94-8ba2-98d78b558dc5)
  
 ---
 
