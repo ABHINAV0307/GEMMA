@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import time
+import os
 
 def moneycontrol():
     html_text=requests.get('https://www.moneycontrol.com/news/news-all/').text
@@ -11,12 +12,14 @@ def moneycontrol():
         subheading=heading.p.text
         link=heading.a['href']
         heading=heading.a['title']
-        with open(f'posts/moneycontrol_{index}.txt','w') as f:
-            f.write(f"News Heading : {heading}\n")
-            f.write(f"Description : {subheading}\n")
-            f.write(f"Link for further : {link}\n")
-            f.write("")
-        print(f'File saved:{index}')
+        if not os.path.isfile(f"posts/mc_{heading[:8]}.txt"):
+            print("new")
+            with open(f'posts/mc_{heading[:8]}.txt','w') as f:
+                f.write(f"News Heading : {heading}\n")
+                f.write(f"Description : {subheading}\n")
+                f.write(f"Link for further : {link}\n")
+                f.write("")
+            print(f'File saved:{index}')
 
 def bbcnews():
     response = requests.get('https://www.bbc.com/news')
@@ -55,7 +58,7 @@ if __name__ =='__main__':
     while True:
         moneycontrol()
         bbcnews()
-        time_wait=10
+        time_wait=100
         print(f'waiting for {time_wait} seconds...')
         time.sleep(time_wait )
 

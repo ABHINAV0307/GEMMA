@@ -13,6 +13,7 @@ import threading  # Added for background threading
 import subprocess  # Added for running the scraping script
 import time       # Added for sleep intervals
 
+
 load_dotenv()
 
 # Load the GROQ and Google API keys
@@ -69,7 +70,7 @@ def scrape_and_update_embeddings():
         # Update the embeddings
         vector_embedding()
         # Sleep for 10 minutes (adjust the time as needed)
-        time.sleep(10)
+        # time.sleep(10)
 
 # Start the background thread for scraping and updating embeddings
 scraping_thread = threading.Thread(target=scrape_and_update_embeddings, daemon=True)
