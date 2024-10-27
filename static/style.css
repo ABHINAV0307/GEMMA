@@ -1,0 +1,121 @@
+/* Main Heading */
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+/* Sub Heading */
+h2 {
+    font-size: 1.5rem;
+    color: #141111;
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+/* Flashy Input field */
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    margin-bottom: 20px;
+    transition: border 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+input[type="text"]:focus {
+    border: 2px solid #007BFF;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+/* Flashy Search Button */
+button {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: linear-gradient(45deg, #007BFF, #00d2ff);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.4s, transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #0056b3, #00a6ff);
+    transform: scale(1.05);
+}
+
+/* Separate container for news section */
+#context {
+    margin-top: 20px;
+    text-align: left;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Flashy News card styling */
+.news-card {
+    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* News card heading */
+.news-card h3 {
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+/* News card paragraph */
+.news-card p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Links in news cards */
+.news-card a {
+    font-size: 1rem;
+    color: #ff4081;
+    text-decoration: none;
+}
+
+.news-card a:hover {
+    text-decoration: underline;
+}
+
+/* Result container styling */
+#result {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e0f7fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Result text formatting */
+#result p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#result strong {
+    font-size: 1.3rem;
+    color: #007BFF;
+    display: block;
+    margin-top: 15px;
+}

@@ -60,13 +60,24 @@ This project is an AI-powered news aggregator that scrapes real-time news data f
 
 ### 6. User Interaction
 - **User Input**: 
-  - Users can enter a keyword (e.g., "Adani," "Reliance") into the Streamlit interface.
+  - Users can enter a keyword (e.g., "Adani," "Reliance") into the frontend interface.
 - **Response Generation**: 
   - The LLM queries the vector database and retrieves the most relevant news articles based on the user's input.
 
 **Technology Used**:
-- **Streamlit**: For the front-end, enabling user interaction and displaying search results.
+- **HTML,CSS,Javascript**: For the front-end, enabling user interaction and displaying search results.
 - **LangChain**: For processing the user's input and generating relevant responses.
+
+### 6. Front End
+- **User Input**: 
+  - Used HTML,CSS and Javascript to build front of the website.
+- **Response Generation**: 
+  - In ths user can enter the news in news search box and they will get response in accordance to that 
+
+**Technology Used**:
+- **HTML,CSS,Javascript**: For the front-end, enabling user interaction and displaying search results.
+- **LangChain**: For processing the user's input and generating relevant responses.
+
 
 ---
 
@@ -94,7 +105,7 @@ This project is an AI-powered news aggregator that scrapes real-time news data f
 
 5. **Run the project**:
    ```bash
-   streamlit run app.py
+   fastapi run app.py
 
  that's it you are ready to go
  

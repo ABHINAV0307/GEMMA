@@ -13,11 +13,10 @@ def moneycontrol():
         link=heading.a['href']
         heading=heading.a['title']
         if not os.path.isfile(f"posts/mc_{heading[:8]}.txt"):
-            print("new")
             with open(f'posts/mc_{heading[:8]}.txt','w') as f:
                 f.write(f"News Heading : {heading}\n")
                 f.write(f"Description : {subheading}\n")
-                f.write(f"Link for further : {link}\n")
+                f.write(f"Link for further :{link}\n")
                 f.write("")
             print(f'File saved:{index}')
 
@@ -27,7 +26,7 @@ def bbcnews():
 
     news_cards = soup.find_all('div', {'data-testid': 'edinburgh-card'})
 
-    base_url = 'https://www.bbc.com/news'
+    base_url = 'https://www.bbc.com'
 
     for index, card in enumerate(news_cards):
         headline = card.find('h2', {'data-testid': 'card-headline'})
@@ -36,19 +35,20 @@ def bbcnews():
         description = card.find('p', {'data-testid': 'card-description'})
         description_text = description.get_text(strip=True) if description else "No description found"
 
-        link_tag = card.find('a', {'data-testid': 'internal-link'})
+        link_tag = card.find('a', href=True)  # Use href=True to ensure you're getting the tag with the link
         if link_tag and 'href' in link_tag.attrs:
             link = link_tag['href']
             if not link.startswith('http'):
-                link = base_url + link
+                link = base_url + link  # Combine relative URL with the base URL
         else:
             link = "No link found"
-
-        with open(f'posts/bbcnews_{index}.txt', 'w') as f:
-            f.write(f"News Heading : {headline_text}\n")  # Updated here
-            f.write(f"Description : {description_text}\n")
-            f.write(f"Link for further : {link}\n")
-        print(f'File saved:{index}')
+        
+        if not os.path.isfile(f"posts/bbc_{headline_text[:8]}.txt"):
+            with open(f'posts/bbc_{headline_text[:8]}.txt', 'w') as f:
+                f.write(f"News Heading : {headline_text}\n")  # Updated here
+                f.write(f"Description : {description_text}\n")
+                f.write(f"Link for further :{link}\n")
+            print(f'File saved:{index}')
 
 
 
