@@ -68,7 +68,7 @@ This project is an AI-powered news aggregator that scrapes real-time news data f
 - **HTML,CSS,Javascript**: For the front-end, enabling user interaction and displaying search results.
 - **LangChain**: For processing the user's input and generating relevant responses.
 
-### 6. Front End
+### 7. Front End
 - **User Input**: 
   - Used HTML,CSS and Javascript to build front of the website.
 - **Response Generation**: 
@@ -81,7 +81,7 @@ This project is an AI-powered news aggregator that scrapes real-time news data f
 
 ---
 
-### 7. Expected Outcomes
+### 8. Expected Outcomes
 - **Timely and Relevant Updates**: Users receive real-time, relevant news updates based on the keywords they provide.
 - **Natural Language Interaction**: The use of a language model enhances the user experience, allowing users to interact naturally with the news data.
 
@@ -103,7 +103,9 @@ This project is an AI-powered news aggregator that scrapes real-time news data f
    GROQ_API_KEY=your_groq_api_key
    GOOGLE_API_KEY=your_google_api_key
 
-5. **Run the project**:
+5. **Run the front in static file that is index.html**:
+
+6. **Run the project**:
    ```bash
    fastapi run app.py
 
