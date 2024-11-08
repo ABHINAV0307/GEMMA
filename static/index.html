@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI News Aggregator</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Update the CSS path to use /static/ prefix -->
+    <link rel="stylesheet" href="/static/style.css">
     <script>
         async function fetchNews() {
             const input = document.getElementById("newsInput").value;
-            const response = await fetch("http://127.0.0.1:8000/query", {
+            const response = await fetch("/query", {  // Updated to use relative path
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -36,7 +37,7 @@
     
                     contextDiv.innerHTML += `
                         <div class="news-card">
-                            <h3> ${newsHeading}</h3>
+                            <h3>${newsHeading}</h3>
                             <p>${description}</p>
                             <a href="${link}" target="_blank">${link !== '#' ? 'Read more' : 'No link available'}</a>
                         </div>`;
@@ -45,27 +46,22 @@
                 document.getElementById("result").innerText = "Error fetching news.";
             }
         }
-
-        // Function to format the result content (questions and answers)
+        
         function formatResponse(answer) {
-    return answer.replace(/\*\*/g, '') // Remove '**'
-                 .split(/(\d+\.\s+)/) // Split based on numbered list
-                 .filter(Boolean) // Remove any empty parts
-                 .map(part => part.trim()) // Trim each part
-                 .join(' ')
-                 .replace(/(\d+\.)/g, '\n$1'); // Ensure new line before numbered items
-}
+            return answer.replace(/\*\*/g, '')
+                        .split(/(\d+\.\s+)/)
+                        .filter(Boolean)
+                        .map(part => part.trim())
+                        .join(' ')
+                        .replace(/(\d+\.)/g, '\n$1');
+        }
     </script>
 </head>
 <body>
     <div class="container">
         <h1>AI News Aggregator</h1>
-
-        <!-- Search section -->
         <input type="text" id="newsInput" placeholder="Enter news to search" onkeydown="if (event.key === 'Enter') fetchNews()">
         <button onclick="fetchNews()">Search</button>
-
-        <!-- Result and Context Section -->
         <div id="result"></div>
         <div id="context"></div>
     </div>
